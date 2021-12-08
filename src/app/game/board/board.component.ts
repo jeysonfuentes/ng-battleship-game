@@ -7,7 +7,7 @@ import { ISlot } from 'src/core/models/slot';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss'],
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent {
   @Input() slots: Array<Array<ISlot>>;
   @Input() totalShootCount: number;
   @Input() gameTurns: number;
@@ -24,9 +24,6 @@ export class BoardComponent implements OnInit {
     'I',
     'J',
   ];
-  constructor() {}
-
-  ngOnInit(): void {}
 
   launchMissile(slot: ISlot): void {
     this.selectSlot.emit(slot);

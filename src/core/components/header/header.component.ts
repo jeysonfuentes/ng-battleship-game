@@ -7,7 +7,7 @@ import { IMenuItem } from './header.interface';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   mainMenu: Array<IMenuItem> = [
     {
       text: 'Game',
@@ -26,7 +26,4 @@ export class HeaderComponent implements OnInit {
       url: 'about',
     },
   ];
-  constructor() {}
-
-  ngOnInit(): void {}
 }

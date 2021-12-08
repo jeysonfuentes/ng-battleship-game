@@ -47,14 +47,16 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   changeLevel() {
     const levelCustom = this.settingsForm.value.level === this.levels[0].name;
-    const level = this.levels.find(x => x.name === this.settingsForm.value.level)!
+    const level = this.levels.find(
+      (x) => x.name === this.settingsForm.value.level
+    )!;
     this.settingsForm.patchValue({
       gameTurns: level.gameTurns,
     });
-    if (levelCustom){
-      this.settingsForm.get('gameTurns')!.enable()
-    }else{
-      this.settingsForm.get('gameTurns')!.disable()
+    if (levelCustom) {
+      this.settingsForm.get('gameTurns')!.enable();
+    } else {
+      this.settingsForm.get('gameTurns')!.disable();
     }
   }
 

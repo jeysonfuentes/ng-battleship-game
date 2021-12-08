@@ -9,7 +9,6 @@ import {
   LEVELS_GAME,
   STATE_GAME,
 } from 'src/core/constants/app.constants';
-import { ISettings } from 'src/core/models/settings';
 import Swal from 'sweetalert2';
 import { BoardService } from 'src/core/services/board/board.service';
 import { GameService } from 'src/core/services/game/game.service';
@@ -22,7 +21,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit, OnDestroy {
-
   currentGame: IGame;
   subscriptionGame$: Array<Subscription> = [];
 
@@ -173,10 +171,5 @@ export class GameComponent implements OnInit, OnDestroy {
     return (
       this.currentGame.totalShootCount <= this.currentGame.settings.gameTurns
     );
-  }
-
-  isGameOver() {
-    //Validar si se acabaron los turnos
-    //Validar si se destruyeron todos los barcos
   }
 }
