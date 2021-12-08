@@ -6,6 +6,7 @@ import { GameComponent } from './game.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SettingsInformationComponent } from './settings-information/settings-information.component';
 import { BoardComponent } from './board/board.component';
+import { IconStateModule } from 'src/core/pipes/icon-state/icon-state.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { BoardComponent } from './board/board.component';
   imports: [
     CommonModule,
     GameRoutingModule,
-    SweetAlert2Module
+    SweetAlert2Module,
+    IconStateModule
   ]
 })
 export class GameModule { }

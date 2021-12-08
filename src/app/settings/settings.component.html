@@ -17,7 +17,11 @@
               <div class="col-span-6 sm:col-span-3">
                 <label for="playerName" class="block text-sm font-medium text-gray-700">Player name</label>
                 <input type="text" formControlName="playerName" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <p class="mt-0 text-sm text-red-500" *ngIf="settingsForm.get('playerName')!.hasError('required') && (settingsForm.get('playerName')!.dirty || settingsForm.get('playerName')!.touched)">
+                  Set a name for player.
+                </p>
               </div>
+
             </div>
             <div class="grid grid-cols-6 gap-6 mt-4">
               <div class="col-span-6 sm:col-span-3">
@@ -25,10 +29,16 @@
                 <select id="level" formControlName="level" (change)="changeLevel()" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" >
                   <option *ngFor="let level of levels" value="{{level.name}}">{{level.name}}</option>
                 </select>
+                <p class="mt-0 text-sm text-red-500" *ngIf="settingsForm.get('level')!.hasError('required') && (settingsForm.get('level')!.dirty || settingsForm.get('level')!.touched)">
+                  Select a level game.
+                </p>
               </div>
               <div class="col-span-6 sm:col-span-3">
                 <label for="last-name" class="block text-sm font-medium text-gray-700">Game turns</label>
                 <input type="number" id="gameTurns" formControlName="gameTurns" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <p class="mt-0 text-sm text-red-500" *ngIf="settingsForm.get('gameTurns')!.hasError('required') && (settingsForm.get('gameTurns')!.dirty || settingsForm.get('gameTurns')!.touched)">
+                  Set a game turns quantity .
+                </p>
               </div>
             </div>
           </div>

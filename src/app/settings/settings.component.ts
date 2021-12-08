@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class SettingsComponent implements OnInit, OnDestroy {
   settingsForm: FormGroup;
   levels: Array<ILevel> = LEVELS_GAME;
-  levelCustom = true;
+
   settings: ISettings;
   settings$: Subscription;
   constructor(
@@ -27,10 +27,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
       level: new FormControl('', Validators.required),
       gameTurns: new FormControl('', Validators.required),
     });
-    this.settingsForm.patchValue({
-      level: this.levels[0].name,
-      gameTurns: this.levels[0].gameTurns,
-    });
   }
   ngOnDestroy(): void {
     if (this.settings$) {
@@ -41,32 +37,33 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.settings$ = this.settingsService.stateChanged.subscribe((state) => {
       this.settings = state.settings;
+      this.settingsForm.patchValue({
+        playerName: state.settings.playerName,
+        level: state.settings.level,
+        gameTurns: state.settings.gameTurns,
+      });
     });
   }
 
   changeLevel() {
-    this.levelCustom = this.settingsForm.value.level === this.levels[0].name;
-    const level: any = this.levels.find(
-      (x) => x.name === this.settingsForm.value.level
-    );
-    this.settingsForm.patchValue({gameTurns: level.gameTurns})
-
-    if (!this.levelCustom) {
-      // this.settingsForm.get('gameTurns')!.disable();
-    } else {
-      // this.settingsForm.get('gameTurns')!.enable();
+    const levelCustom = this.settingsForm.value.level === this.levels[0].name;
+    const level = this.levels.find(x => x.name === this.settingsForm.value.level)!
+    this.settingsForm.patchValue({
+      gameTurns: level.gameTurns,
+    });
+    if (levelCustom){
+      this.settingsForm.get('gameTurns')!.enable()
+    }else{
+      this.settingsForm.get('gameTurns')!.disable()
     }
   }
 
   saveSettings(event: Event) {
     event.preventDefault();
-    if (!this.settingsForm.valid) {
-      console.log('Please provide all the required values!');
-    } else {
-      console.log(this.settingsForm.value);
-      this.settings.playerName = this.settingsForm.value.playerName;
-      this.settings.level = this.settingsForm.value.level;
-      this.settings.gameTurns = this.settingsForm.value.gameTurns;
+    if (this.settingsForm.valid) {
+      this.settings.playerName = this.settingsForm.controls['playerName'].value;
+      this.settings.level = this.settingsForm.controls['level'].value;
+      this.settings.gameTurns = this.settingsForm.controls['gameTurns'].value;
       this.settingsService.setSettings(this.settings);
       Swal.fire({
         title: 'Settings Saved!',

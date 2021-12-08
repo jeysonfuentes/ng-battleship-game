@@ -1,1 +1,37 @@
-<p>settings-information works!</p>
+<div class="flex settings-information">
+  <div class="bg-white w-full shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Game Settings
+      </h3>
+    </div>
+    <div class="border-t border-gray-200">
+      <dl>
+        <div class="settings-information__item bg-gray-50 ">
+          <dt class="settings-information__itemTitle">
+            Player name
+          </dt>
+          <dd class="settings-information__itemValue">
+            {{settings.playerName}}
+          </dd>
+        </div>
+        <div class="bg-white settings-information__item ">
+          <dt class="settings-information__itemTitle">
+            Dificult Level
+          </dt>
+          <dd class="settings-information__itemValue">
+            {{settings.level}}
+          </dd>
+        </div>
+        <div class="bg-gray-50 settings-information__item ">
+          <dt class="settings-information__itemTitle">
+            Game Turns
+          </dt>
+          <dd class="settings-information__itemValue">
+            {{settings.gameTurns}}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,30 @@
-<p>board works!</p>
+<div class="board">
+  <div class="flex border-gray-200">
+    <div class="bg-white shadow p-3 w-15 ">
+      <h3>Game turn remaining</h3>
+      <span>{{totalShootCount}}/{{gameTurns}}</span>
+    </div>
+  </div>
+  <div class="p-1 mx-auto">
+    <!-- Headers -->
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th class="text-center border-2 w-16 h-16"></th>
+          <th class="text-center border-2 w-16 h-16" *ngFor="let column of titleColumns">{{column}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of slots; let i=index">
+          <td class="text-center border-2 w-16 h-16">{{i + 1}}</td>
+          <td class="text-center  cursor-pointer text-white border-2 w-16 h-16" [ngClass]="{
+            'bg-green-400': !slot.isSelected,
+            'bg-red-800': slot.isShip && slot.isSelected && !slot.coordinates.isRevealed,
+            'bg-yellow-200': !slot.isShip && slot.isSelected,
+            'bg-gray-800': slot.isShip && slot.isSelected && slot.coordinates.isRevealed
+          }" *ngFor="let slot of row" (click)="launchMissile(slot)">{{slot | iconState}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

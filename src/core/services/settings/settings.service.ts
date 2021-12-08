@@ -16,21 +16,23 @@ export class SettingsService extends ObservableStore<SettingsStore> {
         playerName: 'Guest',
         level: LEVELS_GAME[0].name,
         gameTurns: LEVELS_GAME[0].gameTurns,
-      }
+      },
     };
 
     this.setState(initialState, 'INIT_STATE');
   }
 
   getSettings() {
-    const {settings} = this.getState();
+    const { settings } = this.getState();
     return of(settings);
   }
 
   setSettings(settings: ISettings) {
     const state = this.getState();
-    state.settings = settings
-    this.setState({settings: state.settings}, SettingsStoreActions.setSettings);
-    console.log(this.stateHistory);
+    state.settings = settings;
+    this.setState(
+      { settings: state.settings },
+      SettingsStoreActions.setSettings
+    );
   }
 }

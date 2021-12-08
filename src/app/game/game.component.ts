@@ -22,25 +22,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./game.component.scss'],
 })
 export class GameComponent implements OnInit, OnDestroy {
-  titleColumns: Array<string> = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-  ];
+
   currentGame: IGame;
-  board: Array<ISlot[]> = [];
-  totalShootCount: number = 0;
-  ships: Array<IShip> = [];
-  settings: ISettings;
-  state: string = '';
-  totalShipDestroyed = 0;
   subscriptionGame$: Array<Subscription> = [];
 
   constructor(
@@ -146,7 +129,6 @@ export class GameComponent implements OnInit, OnDestroy {
       }
     }
     if (this.isAllShipDestroyed() && this.hasGameTurns()) {
-      //You win
       this.currentGame.state = STATE_GAME.WIN;
       this.gameService.addGame(this.currentGame);
       Swal.fire({
