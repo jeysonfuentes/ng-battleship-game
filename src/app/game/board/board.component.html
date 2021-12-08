@@ -2,7 +2,7 @@
   <div class="flex border-gray-200">
     <div class="bg-white shadow p-3 w-15 ">
       <h3>Game turn remaining</h3>
-      <span>{{totalShootCount}}/{{gameTurns}}</span>
+      <span>{{totalShootCount}}/{{gameTurns > 0 ? gameTurns : '∞'}}</span>
     </div>
   </div>
   <div class="p-1 mx-auto">
