@@ -1,0 +1,68 @@
+<div class="flex">
+  <div class="bg-white w-full shadow overflow-hidden sm:rounded-lg">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Game Settings
+      </h3>
+    </div>
+    <div class="border-t border-gray-200">
+      <dl>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Player name
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {{currentGame.settings.playerName}}
+          </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Dificult Level
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {{currentGame.settings.level}}
+          </dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Game Turns
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            {{currentGame.settings.gameTurns}}
+          </dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+<div class="board">
+  <div class="flex border-gray-200">
+    <div class="bg-white shadow p-3 w-15 ">
+      <h3>Game turn remaining</h3>
+      <span>{{currentGame.totalShootCount}}/{{currentGame.settings.gameTurns}}</span>
+    </div>
+  </div>
+  <div class="p-1 mx-auto">
+    <!-- Headers -->
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th class="text-center border-2 w-16 h-16"></th>
+          <th class="text-center border-2 w-16 h-16" *ngFor="let column of titleColumns">{{column}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of currentGame.board.slots; let i=index">
+          <td class="text-center border-2 w-16 h-16">{{i + 1}}</td>
+          <td class="text-center  cursor-pointer text-white border-2 w-16 h-16" [ngClass]="{
+            'bg-green-400': !slot.isSelected,
+            'bg-red-800': slot.isShip && slot.isSelected && !slot.coordinates.isRevealed,
+            'bg-yellow-200': !slot.isShip && slot.isSelected,
+            'bg-gray-800': slot.isShip && slot.isSelected && slot.coordinates.isRevealed
+          }" *ngFor="let slot of row" (click)="launchMissile(slot)">{{(slot.isShip && slot.isSelected) ? 'Ship #' +
+            slot.shipId + '💀' : slot.isSelected ? '❌': ''}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
