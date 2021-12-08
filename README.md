@@ -13,7 +13,7 @@ BattleShip Game
 
 Licence - MIT
 
-https://jeysonfuentes.github.io/ng-battleship-game - live demo
+https://battleship-game-delta.vercel.app/ - live demo
 
 
 
