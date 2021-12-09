@@ -131,7 +131,7 @@ export class GameComponent implements OnInit, OnDestroy {
       this.gameService.addGame(this.currentGame);
       Swal.fire({
         title: 'You WIN!',
-        text: `Great your finish the game in ${this.currentGame.totalShootCount} shoots?, Do you want play again?`,
+        text: `Great! you finished the game in ${this.currentGame.totalShootCount} shoots?, Do you want to play again?`,
         showConfirmButton: true,
         icon: 'success',
         showCancelButton: true,

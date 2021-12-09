@@ -69,7 +69,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       this.settingsService.setSettings(this.settings);
       Swal.fire({
         title: 'Settings Saved!',
-        text: 'Do you want go to Game Board with this settings?',
+        text: 'Do you want to go to Game Board with this settings?',
         showConfirmButton: true,
         icon: 'success',
         showCancelButton: true,
